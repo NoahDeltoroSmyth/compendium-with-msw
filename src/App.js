@@ -1,12 +1,19 @@
-import { useEffect } from 'react';
-import { fetchBreakingBad } from './services/api';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './views/Home/Home';
 import './App.css';
 
 function App() {
-  useEffect(() => {
-    fetchBreakingBad();
-  });
-  return <div></div>;
+  return (
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
