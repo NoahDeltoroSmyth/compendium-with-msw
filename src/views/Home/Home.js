@@ -5,6 +5,7 @@ import './Home.css';
 
 const Home = () => {
   const [characters, setCharacters] = useState([]);
+  const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,11 +18,15 @@ const Home = () => {
     fetchData();
   }, []);
 
+  const filterCharacters = characters.filter(
+    (character) => character.name.toLowerCase().includes(query) || character.name.includes(query)
+  );
+
   if (loading) return <h1>loading...</h1>;
 
   return (
     <div>
-      <Characters {...{ characters }} />
+      <Characters {...{ query, setQuery, filterCharacters }} />
     </div>
   );
 };
