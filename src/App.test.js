@@ -1,5 +1,5 @@
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event/dist/index';
 import App from './App';
 
 test('app renders components on page', async () => {
