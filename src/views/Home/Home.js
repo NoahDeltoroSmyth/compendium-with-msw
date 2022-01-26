@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Characters from '../../components/CharacterList';
+import Characters from '../../components/CharacterList/CharacterList';
 import { fetchBreakingBad } from '../../services/api';
 import './Home.css';
 

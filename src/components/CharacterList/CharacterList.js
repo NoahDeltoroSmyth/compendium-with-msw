@@ -5,13 +5,14 @@ const CharactersList = ({ query, setQuery, filterCharacters }) => {
     <>
       <div>
         <input
+          aria-label="search"
           type="text"
           placeholder="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      <div>
+      <div className="characters">
         {filterCharacters.map((character) => (
           <div key={character.char_id}>
             <h3>{character.name}</h3>
