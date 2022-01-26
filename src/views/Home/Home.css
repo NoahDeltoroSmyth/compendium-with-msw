@@ -1,0 +1,13 @@
+.character-img {
+  width: 35vw;
+  height: 45vw;
+  object-fit: cover;
+}
+
+.characters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-evenly;
+}
