@@ -12,7 +12,6 @@ const Home = () => {
     const fetchData = async () => {
       const data = await fetchBreakingBad();
       setCharacters(data);
-      console.log('data', data);
       setLoading(false);
     };
     fetchData();
