@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <div>
-      {loading && <h1>loading...</h1>}
+      {loading && <h1>loading</h1>}
       <Controls {...{ query, setQuery, setLoading, status, setStatus }} />
       <CharacterList
         {...{

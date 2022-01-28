@@ -13,7 +13,7 @@ const Controls = ({ query, setQuery, setLoading, status, setStatus }) => {
         />
         <button onClick={() => setLoading(true)}>Search</button>
       </form>
-      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+      <select aria-label="dropdown" value={status} onChange={(e) => setStatus(e.target.value)}>
         <option value="All">All</option>
         <option value="Alive">Alive</option>
         <option value="Deceased">Deceased</option>
