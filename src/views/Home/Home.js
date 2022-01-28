@@ -25,7 +25,7 @@ function Home() {
 
   return (
     <div>
-      <CharacterList {...{ query, setQuery, filterCharacters }} />
+      <CharacterList {...{ query, setQuery, filterCharacters, characters, setCharacters }} />
     </div>
   );
 }
