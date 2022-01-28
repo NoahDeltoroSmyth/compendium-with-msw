@@ -15,8 +15,10 @@ function Home() {
       setCharacters(data);
       setLoading(false);
     };
-    fetchData();
-  }, []);
+    if (loading) {
+      fetchData();
+    }
+  }, [loading]);
 
   const filterCharacters = characters.filter(
     (character) =>
@@ -24,12 +26,22 @@ function Home() {
       (character.status === status || status === 'All')
   );
 
-  if (loading) return <h1>loading...</h1>;
-
   return (
     <div>
+      {loading && <h1>loading...</h1>}
+
       <CharacterList
-        {...{ query, setQuery, filterCharacters, characters, setCharacters, status, setStatus }}
+        {...{
+          query,
+          setQuery,
+          filterCharacters,
+          characters,
+          setCharacters,
+          status,
+          setStatus,
+          loading,
+          setLoading,
+        }}
       />
     </div>
   );

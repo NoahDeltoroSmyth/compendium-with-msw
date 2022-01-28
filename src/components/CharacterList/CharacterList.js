@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CharacterList = ({ query, setQuery, filterCharacters, status, setStatus }) => {
+const CharacterList = ({ query, setQuery, filterCharacters, status, setStatus, setLoading }) => {
   return (
     <>
-      <div>
+      <form>
         <input
           aria-label="search"
           type="text"
@@ -11,13 +11,14 @@ const CharacterList = ({ query, setQuery, filterCharacters, status, setStatus })
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="All">All</option>
-          <option value="Alive">Alive</option>
-          <option value="Deceased">Deceased</option>
-          <option value="Presumed dead">???</option>
-        </select>
-      </div>
+        <button onClick={() => setLoading(true)}>Search</button>
+      </form>
+      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+        <option value="All">All</option>
+        <option value="Alive">Alive</option>
+        <option value="Deceased">Deceased</option>
+        <option value="Presumed dead">???</option>
+      </select>
       <div className="characters">
         {filterCharacters.map((character) => (
           <div key={character.char_id}>
