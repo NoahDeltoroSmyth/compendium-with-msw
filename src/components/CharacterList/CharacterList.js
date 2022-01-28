@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CharacterList = ({ query, setQuery, filterCharacters, characters, setCharacters }) => {
+const CharacterList = ({ query, setQuery, filterCharacters, status, setStatus }) => {
   return (
     <>
       <div>
@@ -11,10 +11,11 @@ const CharacterList = ({ query, setQuery, filterCharacters, characters, setChara
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <select value={characters} onChange={(e) => setCharacters(e.target.value)}>
+        <select value={status} onChange={(e) => setStatus(e.target.value)}>
           <option value="All">All</option>
           <option value="Alive">Alive</option>
           <option value="Deceased">Deceased</option>
+          <option value="Presumed dead">???</option>
         </select>
       </div>
       <div className="characters">
