@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Characters from '../../components/CharacterList/CharacterList';
-import { fetchBreakingBad } from '../../services/api';
+import CharacterList from '../../components/CharacterList/CharacterList';
+import fetchBreakingBad from '../../services/api';
 import './Home.css';
 
-const Home = () => {
+function Home() {
   const [characters, setCharacters] = useState([]);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
@@ -25,9 +25,9 @@ const Home = () => {
 
   return (
     <div>
-      <Characters {...{ query, setQuery, filterCharacters }} />
+      <CharacterList {...{ query, setQuery, filterCharacters }} />
     </div>
   );
-};
+}
 
 export default Home;

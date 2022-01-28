@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CharactersList = ({ query, setQuery, filterCharacters }) => {
+const CharacterList = ({ query, setQuery, filterCharacters }) => {
   return (
     <>
       <div>
@@ -24,4 +24,4 @@ const CharactersList = ({ query, setQuery, filterCharacters }) => {
   );
 };
 
-export default CharactersList;
+export default CharacterList;
