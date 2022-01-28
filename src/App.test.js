@@ -25,18 +25,20 @@ afterAll(() => server.close());
 test('app renders components on page', async () => {
   render(<App />);
 
-  // const loading = screen.getByText(/loading/i);
-  // expect(loading).toBeInTheDocument();
-  const heading = screen.getByRole('heading', { name: /breaking bad/i });
-  const searchBar = await screen.findByRole('textbox', { name: /search/i });
-  const name = screen.getByRole('heading', { name: /jesse/i });
-  const img = screen.getByAltText(/jesse/i);
+  const loading = await screen.findByText(/loading/i);
+  expect(loading).toBeInTheDocument();
 
+  const heading = screen.getByRole('heading', { name: /breaking bad/i });
   expect(heading).toBeInTheDocument();
+
+  const searchBar = await screen.findByRole('textbox', { name: /search/i });
   expect(searchBar).toBeInTheDocument();
+
+  const name = await screen.findByRole('heading', { name: /jesse pinkman/i });
   expect(name).toBeInTheDocument();
+
+  const img = screen.getByAltText(/jesse/i);
   expect(img).toBeInTheDocument();
-  // await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
 });
 
 test('searchbar works correctly', async () => {
@@ -57,4 +59,23 @@ test('searchbar works correctly', async () => {
   const handleCheck = (name) => name.toLowerCase().includes(characterName);
   const hasSameName = result.every(handleCheck);
   expect(hasSameName).toBe(true);
+});
+
+test('Dropdown works as expected', async () => {
+  render(<App />);
+
+  // grab dropdown
+  const dropDown = await screen.findByRole('combobox', { name: /dropdown/i });
+
+  // fake selection of 'Alive'
+  userEvent.selectOptions(dropDown, 'Alive');
+
+  // grab characters that are 'Alive' and map
+  const characters = await screen.findAllByText('Alive', { exact: false });
+  const result = characters.map((character) => character.textContent);
+
+  // check that characters details include 'Alive'
+  const handleCheck = (name) => name.includes('Alive');
+  const isAlive = result.every(handleCheck);
+  expect(isAlive).toBe(true);
 });

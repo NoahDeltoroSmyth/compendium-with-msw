@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import CharacterList from '../../components/CharacterList/CharacterList';
+import Controls from '../../components/Controls/Controls';
 import fetchBreakingBad from '../../services/api';
 import './Home.css';
 
 function Home() {
   const [characters, setCharacters] = useState([]);
+  const [status, setStatus] = useState('All');
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -14,18 +16,27 @@ function Home() {
       setCharacters(data);
       setLoading(false);
     };
-    fetchData();
-  }, []);
-
-  const filterCharacters = characters.filter(
-    (character) => character.name.toLowerCase().includes(query) || character.name.includes(query)
-  );
-
-  if (loading) return <h1>loading...</h1>;
+    if (loading) {
+      fetchData();
+    }
+  }, [loading]);
 
   return (
     <div>
-      <CharacterList {...{ query, setQuery, filterCharacters, characters, setCharacters }} />
+      {loading && <h1>loading</h1>}
+      <Controls {...{ query, setQuery, setLoading, status, setStatus }} />
+      <CharacterList
+        {...{
+          query,
+          setQuery,
+          characters,
+          setCharacters,
+          status,
+          setStatus,
+          loading,
+          setLoading,
+        }}
+      />
     </div>
   );
 }
