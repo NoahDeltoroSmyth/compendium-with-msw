@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import mockResponse from './Data/Data';
 import App from './App';
@@ -29,7 +29,7 @@ test('app renders components on page', async () => {
   // expect(loading).toBeInTheDocument();
   const heading = screen.getByRole('heading', { name: /breaking bad/i });
   const searchBar = await screen.findByRole('textbox', { name: /search/i });
-  const name = screen.getByRole('heading', { name: /jesse/i });
+  const name = await screen.findByRole('heading', { name: /jesse pinkman/i });
   const img = screen.getByAltText(/jesse/i);
 
   expect(heading).toBeInTheDocument();

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CharacterList from '../../components/CharacterList/CharacterList';
+import Controls from '../../components/Controls/Controls';
 import fetchBreakingBad from '../../services/api';
 import './Home.css';
 
@@ -20,21 +21,14 @@ function Home() {
     }
   }, [loading]);
 
-  const filterCharacters = characters.filter(
-    (character) =>
-      (character.name.toLowerCase().includes(query) || character.name.includes(query)) &&
-      (character.status === status || status === 'All')
-  );
-
   return (
     <div>
       {loading && <h1>loading...</h1>}
-
+      <Controls {...{ query, setQuery, setLoading, status, setStatus }} />
       <CharacterList
         {...{
           query,
           setQuery,
-          filterCharacters,
           characters,
           setCharacters,
           status,
